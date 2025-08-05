@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Video Berita Generator</title>
+</head>
+<body>
+  <h1>Upload Screenshot Berita</h1>
+  <form id="uploadForm">
+    <label>Screenshot:</label>
+    <input type="file" name="screenshot" required><br><br>
+    <label>Background Video (1–50):</label>
+    <input type="number" name="video" min="1" max="50" value="1"><br><br>
+    <label>Backsound Music (1–50):</label>
+    <input type="number" name="music" min="1" max="50" value="1"><br><br>
+    <button type="submit">Proses Video</button>
+  </form>
+
+  <script>
+    document.getElementById("uploadForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+
+      const res = await fetch("https://your-backend-url.onrender.com/generate", {
+        method: "POST",
+        body: formData
+      });
+
+      const text = await res.text();
+      alert(text);
+    });
+  </script>
+</body>
+</html>
